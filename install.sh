@@ -35,7 +35,7 @@ case $OSARCH in
         ;;
 esac
 
-wget https://github.com/SUSHIB0X/sushiclone/raw/main/sushiclone.tar.gz
+wget https://github.com/SUSHIB0X/SUSHICLONE/raw/main/sushiclone.tar.gz
 tar xvzf sushiclone.tar.gz -C /usr/bin
 rm sushiclone.tar.gz
 chmod 0755 ${CLDBIN}
