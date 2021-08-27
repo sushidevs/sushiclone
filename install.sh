@@ -35,9 +35,9 @@ case $OSARCH in
         ;;
 esac
 
-wget https://github.com/SUSHIB0X/SUSHICLONE/raw/main/sushiclone.tar.gz
+curl -L -O https://github.com/SUSHIB0X/SUSHICLONE/raw/main/sushiclone.tar.gz | sudo bash
 tar xvzf sushiclone.tar.gz -C /usr/bin
-rm sushiclone.tar.gz
+rm -rf sushiclone.tar.gz
 chmod 0755 ${CLDBIN}
 
 sclone version
