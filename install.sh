@@ -38,6 +38,6 @@ esac
 curl -L -O https://github.com/SUSHIB0X/SUSHICLONE/raw/main/sushiclone.tar.gz | sudo bash
 tar xvzf sushiclone.tar.gz -C /usr/bin
 rm -rf sushiclone.tar.gz
-chmod 0755 ${CLDBIN}
+chmod 0775 ${CLDBIN}
 
 sclone version
