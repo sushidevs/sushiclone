@@ -14,7 +14,7 @@ if [[ $(id -u) -ne 0 ]]; then
     exit 1
 fi
 
-CLDBIN=/usr/bin/sclone
+CLDBIN=/sbx/bin/sclone
 OSARCH=$(uname -m)
 case $OSARCH in 
     x86_64)
@@ -35,9 +35,9 @@ case $OSARCH in
         ;;
 esac
 
-curl -L -O https://github.com/SUSHIB0X/SUSHICLONE/raw/main/sushiclone.tar.gz | sudo bash
-tar xvzf sushiclone.tar.gz -C /usr/bin
-rm -rf sushiclone.tar.gz
+curl -L -O https://github.com/SUSHIB0X/SUSHICLONE/raw/main/sushiclone158.tar.gz | sudo bash
+tar xvzf sushiclone158.tar.gz -C /sbx/bin
+rm -rf sushiclone158.tar.gz
 chmod 0775 ${CLDBIN}
 
 sclone version
