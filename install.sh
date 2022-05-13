@@ -35,10 +35,10 @@ case $OSARCH in
         ;;
 esac
 
-wget https://github.com/morganzero/sushiclone/raw/main/sushiclone.tar.gz
-tar xvzf sushiclone.tar.gz -C /usr/bin
-rm sushiclone.tar.gz
-chmod 0755 ${CLDBIN}
+curl -L -O https://github.com/SUSHIB0X/SUSHICLONE/raw/main/sushiclone.tar.gz | sudo bash
+tar xvzf sushiclone.tar.gz -C /sbx/bin
+rm -rf sushiclone.tar.gz
+chmod 0775 ${CLDBIN}
 
 version=$(sclone version | head -1 | awk '{print $2}' | cut -c-12)
 echo "sclone $version"
