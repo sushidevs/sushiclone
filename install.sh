@@ -14,7 +14,7 @@ if [[ $(id -u) -ne 0 ]]; then
     exit 1
 fi
 
-CLDBIN=/usr/bin/sclone
+CLDBIN=/sbx/bin/sclone
 OSARCH=$(uname -m)
 case $OSARCH in 
     x86_64)
