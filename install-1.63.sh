@@ -31,10 +31,10 @@ installation() {
   fi
 
   echo "Extracting sclone binary package..."
-  tar xvzf "$TMPDIR/sclone-$SCLVER-$BINTAG.tar.gz" -C "$TMPDIR/sclone"
+  tar xvzf "$TMPDIR/sclone-$SCLVER-$BINTAG.tar.gz" -C "$TMPDIR/"
 
   echo "Installing sclone..."
-  if ! mv "$TMPDIR/sclone" "$CLDBIN"; then
+  if ! mv "$TMPDIR/sclone-$SCLVER-$BINTAG" "$CLDBIN"; then
     echo "Failed to install sclone"
     exit 1
   fi
