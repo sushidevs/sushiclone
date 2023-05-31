@@ -13,28 +13,26 @@ check_systemd() {
 
 check_root() {
   if [[ $(id -u) -ne 0 ]]; then
-    echo "Root privileges required! Please run this script as root"
+    echo "Root privileges required! Please run this script as root."
     exit 1
   fi
 }
 
-CLDBIN="/sbx/bin/sclone"
-OSARCH=$(uname -m)
-SCLVER="1.63"
-TMPDIR="/sbx/temp"
-
 installation() {
-  DOMAIN="static.botbox.xyz"
-  DL_URL="https://$DOMAIN/sclone-$SCLVER-$BINTAG.tar.gz"
+  CLDBIN="/sbx/bin/sclone"
+  OSARCH=$(uname -m)
+  SCLVER="1.63"
+  TMPDIR="/sbx/temp"
+  DL_URL="https://static.botbox.xyz/sclone-$SCLVER-$BINTAG.tar.gz"
 
   echo "Downloading sclone binary package..."
-  if ! curl -L -o "$TMPDIR/sclone-$SCLVER-$BINTAG" "$DL_URL"; then
+  if ! curl -L -o "$TMPDIR/sclone-$SCLVER-$BINTAG.tar.gz" "$DL_URL"; then
     echo "Failed to download sclone binary package"
     exit 1
   fi
 
   echo "Extracting sclone binary package..."
-  tar xvzf "$TMPDIR/sclone-$SCLVER-$BINTAG" -C "$TMPDIR/sclone"
+  tar xvzf "$TMPDIR/sclone-$SCLVER-$BINTAG.tar.gz" -C "$TMPDIR/sclone"
 
   echo "Installing sclone..."
   if ! mv "$TMPDIR/sclone" "$CLDBIN"; then
@@ -43,7 +41,7 @@ installation() {
   fi
 
   echo "Cleaning up..."
-  rm "$TMPDIR/sclone-$SCLVER-$BINTAG"
+  rm -rf "$TMPDIR/sclone-$SCLVER-$BINTAG.tar.gz"
 
   chmod 0775 "$CLDBIN"
 
@@ -55,20 +53,8 @@ check_root
 check_systemd
 
 case $OSARCH in
-  x86_64)
-    BINTAG=amd64
-    installation
-    ;;
-  arm*)
-    BINTAG=arm
-    installation
-    ;;
-  arm64)
-    BINTAG=arm
-    installation
-    ;;
-  *)
-    echo "Unsupported OSARCH: $OSARCH"
-    exit 1
-    ;;
+  x86_64  ) BINTAG="amd64"; installation ;;
+  arm*    ) BINTAG="arm"; installation ;;
+  arm64   ) BINTAG="arm"; installation ;;
+  *       ) echo "Unsupported OS architecture: $OSARCH"; exit 1 ;;
 esac
