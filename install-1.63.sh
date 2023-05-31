@@ -21,11 +21,12 @@ check_root() {
 CLDBIN="/sbx/bin/sclone"
 OSARCH=$(uname -m)
 SCLVER="1.63"
-DOMAIN="static.botbox.xyz"
-DL_URL="https://$DOMAIN/sclone-$SCLVER-$BINTAG.tar.gz"
 TMPDIR="/sbx/temp"
 
 installation() {
+  DOMAIN="static.botbox.xyz"
+  DL_URL="https://$DOMAIN/sclone-$SCLVER-$BINTAG.tar.gz"
+
   echo "Downloading sclone binary package..."
   if ! curl -L -o "$TMPDIR/sclone-$SCLVER-$BINTAG" "$DL_URL" | sudo bash; then
     echo "Failed to download sclone binary package"
