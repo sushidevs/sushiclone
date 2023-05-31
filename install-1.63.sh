@@ -34,7 +34,7 @@ installation() {
   fi
 
   echo "Extracting sclone binary package..."
-  tar xvzf "$TMPDIR/sclone-$SCLVER-$BINTAG" --strip-components=1 -C "$TMPDIR/sclone"
+  tar xvzf "$TMPDIR/sclone-$SCLVER-$BINTAG" -C "$TMPDIR/sclone"
 
   echo "Installing sclone..."
   if ! mv "$TMPDIR/sclone" "$CLDBIN"; then
