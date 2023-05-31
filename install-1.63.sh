@@ -51,11 +51,9 @@ installation() {
 check_root
 check_systemd
 
-OSARCH=$(uname -m)
-
-case $OSARCH in
+case $(uname -m) in
   x86_64  ) BINTAG="amd64"; installation ;;
   arm*    ) BINTAG="arm"; installation ;;
   arm64   ) BINTAG="arm"; installation ;;
-  *       ) echo "Unsupported OS architecture: $OSARCH"; exit 1 ;;
+  *       ) echo "Unsupported OS architecture: $(uname -m)"; exit 1 ;;
 esac
