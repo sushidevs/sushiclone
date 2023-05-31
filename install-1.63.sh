@@ -20,7 +20,6 @@ check_root() {
 
 installation() {
   CLDBIN="/sbx/bin/sclone"
-  OSARCH=$(uname -m)
   SCLVER="1.63"
   TMPDIR="/sbx/temp"
   DL_URL="https://static.botbox.xyz/sclone-$SCLVER-$BINTAG.tar.gz"
@@ -51,6 +50,8 @@ installation() {
 
 check_root
 check_systemd
+
+OSARCH=$(uname -m)
 
 case $OSARCH in
   x86_64  ) BINTAG="amd64"; installation ;;
