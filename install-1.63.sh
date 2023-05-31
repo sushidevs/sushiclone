@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/bash
 
 set -o errexit
 set -o pipefail
@@ -28,7 +28,7 @@ installation() {
   DL_URL="https://$DOMAIN/sclone-$SCLVER-$BINTAG.tar.gz"
 
   echo "Downloading sclone binary package..."
-  if ! curl -L -o "$TMPDIR/sclone-$SCLVER-$BINTAG" "$DL_URL" | sudo bash; then
+  if ! curl -L -o "$TMPDIR/sclone-$SCLVER-$BINTAG" "$DL_URL"; then
     echo "Failed to download sclone binary package"
     exit 1
   fi
