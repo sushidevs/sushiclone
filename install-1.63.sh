@@ -1,19 +1,27 @@
 #!/usr/bin/bash
 
+source /sbx/system/.framework/.framework.sh
+
 set -o errexit
 set -o pipefail
 set -o nounset
 
-check_systemd() {
-  if ! command -v systemctl >/dev/null 2>&1; then
-    echo "Sorry! This script is specifically for Linux systems with systemd, like Ubuntu 16.04 and above."
+checkRoot() {
+  if [[ $EUID -eq 0 ]]; then
+    printf "%s"
+  else
+    echo "::: Permission Denied! Please execute as root."
+    sleep 1
+    echo "::: Exiting..."
     exit 1
   fi
 }
 
-check_root() {
-  if [[ $(id -u) -ne 0 ]]; then
-    echo "Root privileges required! Please run this script as root."
+checkSystemd() {
+  if ! command -v systemctl >/dev/null 2>&1; then
+    echo -e "::: Linux with systemd required (Ubuntu 16.04+)"
+    sleep 1
+    echo "::: Exiting..."
     exit 1
   fi
 }
@@ -48,8 +56,8 @@ installation() {
   echo "sclone $sclone_version has been installed successfully"
 }
 
-check_root
-check_systemd
+checkRoot
+checkSystemd
 
 case $(uname -m) in
   x86_64  ) BINTAG="amd64"; installation ;;
