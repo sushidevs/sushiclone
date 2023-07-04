@@ -1,7 +1,5 @@
 #!/usr/bin/bash
 
-source /sbx/system/.framework/.framework.sh
-
 set -o errexit
 set -o pipefail
 set -o nounset
